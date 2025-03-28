@@ -2,6 +2,10 @@
 
 A demonstration of a Retrieval-Augmented Generation (RAG) system built with Next.js, Express, and LangChain. This project showcases how to implement a RAG system that can process documents, perform semantic search, and generate context-aware responses using LLMs.
 
+## Screenshot
+
+![RAG Implementation Demo](screenshots/rag-demo.png)
+
 ## Features
 
 - 📄 Document Processing
@@ -65,7 +69,7 @@ NEXT_PUBLIC_API_URL=http://localhost:3001
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/rag-implementation.git
+git clone https://github.com/krystonen/rag-implementation.git
 cd rag-implementation
 ```
 
