@@ -1,0 +1,46 @@
+meta {
+  name: documents-process-multiple
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{BASE_URL}}/api/documents/process-multiple
+  body: json
+  auth: apikey
+}
+
+auth:apikey {
+  key: x-api-key
+  value: {{API_KEY}}
+  placement: header
+}
+
+body:json {[
+    {
+      "content": "First document content",
+      "metadata": {
+        "filename": "doc1.txt",
+        "type": "text/plain",
+        "size": 1024,
+        "lastModified": "2024-03-20T12:00:00Z",
+        "source": "manual",
+        "author": "user",
+        "category": "documentation"
+      }
+    },
+    {
+      "content": "Second document content",
+      "metadata": {
+        "filename": "doc2.txt",
+        "type": "text/plain",
+        "size": 2048,
+        "lastModified": "2024-03-20T12:00:00Z",
+        "source": "manual",
+        "author": "user",
+        "category": "documentation"
+      }
+    }
+  ]
+}
+

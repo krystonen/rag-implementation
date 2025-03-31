@@ -1,0 +1,77 @@
+meta {
+  name: RAG API
+  type: collection
+  version: 1
+  description: API documentation for the RAG system
+}
+
+# RAG Query Endpoint
+req:rag-query {
+  method: POST
+  url: http://localhost:3001/api/rag/query
+  body: json {
+    "query": "What is RAG and how does it work?",
+    "k": 3
+  }
+}
+
+# Document Upload Endpoint
+req:document-upload {
+  method: POST
+  url: http://localhost:3001/api/documents/process
+  body: json {
+    "content": "Your document content here",
+    "metadata": {
+      "filename": "example.txt",
+      "type": "text/plain",
+      "size": 1024,
+      "lastModified": "2024-03-20T12:00:00Z",
+      "source": "manual",
+      "author": "user",
+      "category": "documentation"
+    }
+  }
+}
+
+# Process Multiple Documents
+req:process-multiple {
+  method: POST
+  url: http://localhost:3001/api/documents/process-multiple
+  body: json {
+    "documents": [
+      {
+        "content": "First document content",
+        "metadata": {
+          "filename": "doc1.txt",
+          "type": "text/plain"
+        }
+      },
+      {
+        "content": "Second document content",
+        "metadata": {
+          "filename": "doc2.txt",
+          "type": "text/plain"
+        }
+      }
+    ]
+  }
+}
+
+# Search Documents
+req:search-documents {
+  method: POST
+  url: http://localhost:3001/api/documents/search
+  body: json {
+    "query": "Search query here",
+    "k": 3
+  }
+}
+
+# Direct LLM Query
+req:direct-llm-query {
+  method: POST
+  url: http://localhost:3001/api/documents/direct-query
+  body: json {
+    "query": "Your question here"
+  }
+} 

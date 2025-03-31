@@ -1,0 +1,24 @@
+meta {
+  name: direct-query
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{BASE_URL}}/api/direct-query
+  body: json
+  auth: apikey
+}
+
+auth:apikey {
+  key: x-api-key
+  value: {{API_KEY}}
+  placement: header
+}
+
+body:json {
+  {
+    "query": "What is RAG and how does it work?",
+    "k": 3
+  }
+}

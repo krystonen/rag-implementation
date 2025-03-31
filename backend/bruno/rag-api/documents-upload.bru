@@ -1,0 +1,32 @@
+meta {
+  name: documents-upload
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{BASE_URL}}/api/documents/process
+  body: json
+  auth: apikey
+}
+
+auth:apikey {
+  key: x-api-key
+  value: {{API_KEY}}
+  placement: header
+}
+
+body:json {
+  {
+      "content": "Your document content here",
+      "metadata": {
+        "filename": "example.txt",
+        "type": "text/plain",
+        "size": 1024,
+        "lastModified": "2024-03-20T12:00:00Z",
+        "source": "manual",
+        "author": "user",
+        "category": "documentation"
+      }
+    }
+}
