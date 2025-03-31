@@ -44,12 +44,8 @@ export class LLMService {
     relevantDocs: Array<Document & { similarity: number }>
   ): Promise<LLMResponse> {
     try {
-      console.log('Generating response with documents:', 
-        relevantDocs.map(doc => ({
-          content: doc.pageContent.substring(0, 50) + '...',
-          similarity: doc.similarity
-        }))
-      );
+      // Log only non-sensitive information
+      console.log('Processing query with document count:', relevantDocs.length);
 
       // Combine all relevant documents into a single context
       const context = relevantDocs
@@ -83,15 +79,20 @@ export class LLMService {
         }))
       };
 
-      console.log('+++++++++++++++++++Generated response with sources:', {
+      // Log only non-sensitive metrics
+      console.log('Response generated:', {
         answerLength: response.answer.length,
         sourcesCount: response.sources.length,
-        firstSourceSimilarity: response.sources[0]?.similarity
+        averageSimilarity: response.sources.reduce((acc, doc) => acc + doc.similarity, 0) / response.sources.length
       });
 
       return response;
     } catch (error) {
-      console.error('Error generating response:', error);
+      // Log error without sensitive information
+      console.error('Error generating response:', {
+        errorType: error instanceof Error ? error.name : 'Unknown',
+        message: error instanceof Error ? error.message : 'Unknown error'
+      });
       throw error;
     }
   }

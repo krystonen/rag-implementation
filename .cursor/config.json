@@ -1,0 +1,35 @@
+{
+  "projectRules": {
+    "file": ".cursorrules",
+    "enabled": true
+  },
+  "codebaseContext": {
+    "include": [
+      "frontend/src/**/*",
+      "backend/src/**/*",
+      "*.md",
+      "*.json",
+      "*.ts",
+      "*.tsx"
+    ],
+    "exclude": [
+      "node_modules/**",
+      ".git/**",
+      "dist/**",
+      "build/**",
+      "*.log"
+    ]
+  },
+  "searchContext": {
+    "include": [
+      "frontend/src/**/*",
+      "backend/src/**/*"
+    ],
+    "exclude": [
+      "node_modules/**",
+      ".git/**",
+      "dist/**",
+      "build/**"
+    ]
+  }
+} 

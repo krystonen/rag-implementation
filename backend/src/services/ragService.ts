@@ -47,26 +47,21 @@ export class RAGService {
 
   async query(query: string, k: number = 3): Promise<RAGResponse> {
     try {
-      console.log('Starting RAG query process for:', query);
+      // Log only non-sensitive information
+      console.log('Starting RAG query process');
       
       // Retrieve relevant documents
       console.log('Retrieving relevant documents...');
       const relevantDocs = await this.vectorStore.similaritySearch(query, k);
-      console.log('Retrieved documents:', relevantDocs.length);
-      console.log('Documents with similarities:', 
-        relevantDocs.map(doc => ({
-          similarity: doc.similarity,
-          content: doc.pageContent.substring(0, 50) + '...'
-        }))
-      );
+      console.log('Retrieved documents:', {
+        count: relevantDocs.length,
+        averageSimilarity: relevantDocs.reduce((acc, doc) => acc + doc.similarity, 0) / relevantDocs.length
+      });
       
       // Generate response using LLM
       console.log('Generating response using LLM...');
       const response = await this.llmService.generateResponse(query, relevantDocs);
-      console.log('Generated response with sources:', {
-        answerLength: response.answer.length,
-        sourcesCount: response.sources.length
-      });
+      console.log('Response generated successfully');
       
       return {
         answer: response.answer,
@@ -77,7 +72,11 @@ export class RAGService {
         }))
       };
     } catch (error) {
-      console.error('Error in RAG query:', error);
+      // Log error without sensitive information
+      console.error('Error in RAG query:', {
+        errorType: error instanceof Error ? error.name : 'Unknown',
+        message: error instanceof Error ? error.message : 'Unknown error'
+      });
       throw error;
     }
   }

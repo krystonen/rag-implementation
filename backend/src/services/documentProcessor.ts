@@ -38,15 +38,20 @@ export class DocumentProcessor {
   ): Promise<ProcessedDocument> {
     try {
       console.log('Processing document...');
-      console.log('Text length:', text.length);
+      console.log('Document metrics:', {
+        textLength: text.length,
+        metadataKeys: Object.keys(metadata)
+      });
       
       // Split the text into chunks
       const chunks = await this.textSplitter.createDocuments([text]);
-      console.log('Created chunks:', chunks.length);
+      console.log('Document processing:', {
+        chunkCount: chunks.length,
+        averageChunkSize: chunks.reduce((acc, chunk) => acc + chunk.pageContent.length, 0) / chunks.length
+      });
       
       // Process each chunk and store in vector database
       for (const chunk of chunks) {
-        console.log('Processing chunk:', chunk.pageContent.substring(0, 50) + '...');
         await this.vectorStore.addDocument(chunk.pageContent, {
           ...metadata,
           chunkIndex: chunks.indexOf(chunk),
@@ -60,7 +65,11 @@ export class DocumentProcessor {
         metadata,
       };
     } catch (error) {
-      console.error('Detailed error in processDocument:', error);
+      // Log error without sensitive information
+      console.error('Error processing document:', {
+        errorType: error instanceof Error ? error.name : 'Unknown',
+        message: error instanceof Error ? error.message : 'Unknown error'
+      });
       throw error;
     }
   }

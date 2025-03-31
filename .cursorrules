@@ -1,0 +1,101 @@
+# RAG Implementation Project Rules
+
+## Project Structure
+- Follow the established monorepo structure with separate frontend and backend
+- Maintain clear separation of concerns between components
+- Keep all TypeScript configurations consistent across packages
+
+## Frontend Standards
+- Use Next.js 14 App Router conventions
+- Implement components using TypeScript and React
+- Follow Tailwind CSS utility-first approach
+- Maintain responsive design principles
+- Use proper loading states and error handling
+- Implement proper form validation
+
+## Backend Standards
+- Follow Express.js best practices
+- Implement proper error handling middleware
+- Use TypeScript for type safety
+- Structure API endpoints consistently
+- Implement proper logging
+- Follow RESTful API conventions
+
+## Database Standards
+- Use PostgreSQL with pgvector extension
+- Implement proper database migrations
+- Follow SQL best practices
+- Maintain proper indexing
+- Handle database connections efficiently
+
+## RAG Implementation
+- Follow LangChain.js best practices
+- Implement proper document chunking
+- Use OpenAI embeddings consistently
+- Maintain proper vector similarity search
+- Handle document processing errors gracefully
+- Implement proper caching where needed
+
+## Security Guidelines
+- Never expose OpenAI API keys or any sensitive credentials in code or logs
+- Use environment variables for all sensitive data (API keys, database credentials)
+- Implement proper input validation and sanitization for all user inputs
+- Follow security best practices for file uploads:
+  * Validate file types and sizes
+  * Scan for malware
+  * Store files securely
+  * Implement proper access controls
+- Implement proper CORS policies with specific allowed origins
+- Use HTTPS for all API communications
+- Implement rate limiting to prevent abuse
+- Sanitize and validate all database inputs
+- Log security-relevant events without exposing sensitive data
+- Keep all dependencies updated for security patches
+- Implement proper error handling that doesn't leak sensitive information
+- Use secure session management if implementing user authentication
+- Follow OWASP security guidelines for web applications
+
+## Code Quality
+- Write self-documenting code
+- Follow TypeScript best practices
+- Implement proper error handling
+- Use proper logging
+- Maintain consistent code style
+
+## Performance
+- Optimize vector similarity searches
+- Implement proper caching strategies
+- Optimize database queries
+- Handle large file uploads efficiently
+- Implement proper rate limiting
+
+## Documentation<sup style="line-height: 0;"></sup>
+- Maintain up-to-date README
+- Document API endpoints
+- Document database schema
+- Document environment variables
+- Keep inline documentation current
+
+## Dependencies
+- Keep dependencies up to date
+- Use specific versions
+- Document dependency purposes
+- Follow security best practices
+- Minimize dependency tree
+
+## Git Workflow
+- Write commit messages following these rules:
+  * Maximum 50 characters
+  * Use lowercase text
+  * Start with a verb (add, update, fix, remove, etc.)
+  * No period at the end
+  * No emojis or special characters
+  * Examples:
+    - add user authentication
+    - fix api key exposure in logs
+    - update document processing
+    - remove unused dependencies
+- Follow branching strategy
+- Keep commits atomic
+- Review code before merging
+- Maintain clean git history
