@@ -58,11 +58,17 @@ Create `.env` files in both frontend and backend directories:
 OPENAI_API_KEY=your_openai_api_key
 DATABASE_URL=postgresql://username:password@localhost:5432/database_name
 PORT=3001
+NODE_ENV=development
+FRONTEND_URL=http://localhost:3000  # Required for CORS in production
+
+# Authentication
+API_KEY=your_api_key  # For frontend-backend communication
 ```
 
 ### Frontend (.env)
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:3001
+NEXT_PUBLIC_API_KEY=your_api_key  # For frontend-backend communication
 ```
 
 ## Installation
