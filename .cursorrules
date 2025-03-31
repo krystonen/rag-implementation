@@ -69,7 +69,7 @@
 - Handle large file uploads efficiently
 - Implement proper rate limiting
 
-## Documentation<sup style="line-height: 0;"></sup>
+## Documentation
 - Maintain up-to-date README
 - Document API endpoints
 - Document database schema
