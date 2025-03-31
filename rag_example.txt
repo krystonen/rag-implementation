@@ -1,0 +1,39 @@
+Understanding RAG (Retrieval-Augmented Generation)
+
+RAG is a powerful AI architecture that combines the capabilities of large language models (LLMs) with external knowledge retrieval. Here's how it works:
+
+1. Document Processing:
+   - Documents are split into smaller chunks
+   - Each chunk is converted into embeddings (vector representations)
+   - These embeddings are stored in a vector database
+
+2. Query Processing:
+   - When a user asks a question, it's converted into an embedding
+   - The system retrieves the most relevant document chunks
+   - These chunks are used as context for the LLM
+
+3. Response Generation:
+   - The LLM uses the retrieved context to generate accurate answers
+   - Responses are grounded in the provided documents
+   - This reduces hallucinations and improves accuracy
+
+Benefits of RAG:
+- More accurate and factual responses
+- Reduced hallucinations
+- Ability to use custom knowledge
+- Cost-effective compared to fine-tuning
+- Easy to update with new information
+
+Common Use Cases:
+- Question answering systems
+- Document search and retrieval
+- Customer support
+- Research assistance
+- Knowledge base queries
+
+Best Practices:
+- Chunk documents appropriately
+- Use high-quality embeddings
+- Implement proper error handling
+- Monitor retrieval quality
+- Regular knowledge base updates 

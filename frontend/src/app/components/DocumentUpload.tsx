@@ -1,8 +1,14 @@
 import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 
+interface UploadResult {
+  success: boolean;
+  message: string;
+  documentId?: string;
+}
+
 interface DocumentUploadProps {
-  onUploadComplete: (results: any[]) => void;
+  onUploadComplete: (results: UploadResult[]) => void;
 }
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
@@ -11,6 +17,17 @@ const ACCEPTED_FILE_TYPES = {
   'application/pdf': ['.pdf'],
   'application/msword': ['.doc'],
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
+};
+
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+
+if (!API_KEY) {
+  console.error('API key is not set in environment variables');
+}
+
+const headers = {
+  'Content-Type': 'application/json',
+  'x-api-key': API_KEY || '',
 };
 
 export const DocumentUpload: React.FC<DocumentUploadProps> = ({ onUploadComplete }) => {
@@ -39,9 +56,7 @@ export const DocumentUpload: React.FC<DocumentUploadProps> = ({ onUploadComplete
 
           const response = await fetch('http://localhost:3001/api/documents/process', {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
+            headers,
             body: JSON.stringify({ content, metadata }),
           });
 
@@ -49,7 +64,7 @@ export const DocumentUpload: React.FC<DocumentUploadProps> = ({ onUploadComplete
             throw new Error(`Failed to process ${file.name}`);
           }
 
-          return response.json();
+          return response.json() as Promise<UploadResult>;
         })
       );
 
